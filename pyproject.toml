@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "certwatch"
+version = "0.1.0"
+description = "Check TLS certificate expiry across many hosts and alert via Slack or e-mail"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Jaya Kiran" }]
+requires-python = ">=3.10"
+dependencies = ["cryptography>=42"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+certwatch = "certwatch.cli:main"
+
+[tool.setuptools]
+packages = ["certwatch"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
